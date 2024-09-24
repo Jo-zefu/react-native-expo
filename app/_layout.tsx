@@ -12,6 +12,7 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { NativeWindStyleSheet } from "nativewind";
+import GlobalProvider from "@/context/GlobalProvider";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -47,13 +48,15 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    // <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <GlobalProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         {/* <Stack.Screen name="search/[query]" options={{ headerShown: false }} /> */}
       </Stack>
-    </ThemeProvider>
+    </GlobalProvider>
+    // </ThemeProvider>
   );
 }
